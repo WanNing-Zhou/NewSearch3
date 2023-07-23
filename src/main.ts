@@ -20,6 +20,8 @@ import "animate.css/animate.min.css";
 // 使用wow中animate的方式
 import "wowjs/css/libs/animate.css";
 import 'normalize.css/normalize.css';
+// 和风天气图标
+import 'qweather-icons/font/qweather-icons.css'
 
 import 'animate.css'
 
