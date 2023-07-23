@@ -1,14 +1,18 @@
 // 搜索建议
 <template>
   <div class="suggestion-box">
-    <su-item v-for="(su, index) in suDataList" :key="index"  :su="su"></su-item>
+    <su-item v-for="(su, index) in suggestionList" :key="index"  :su="su"></su-item>
   </div>
 </template>
 
 <script setup lang="ts">
 import SuItem from "@/views/Home/components/SearchBox/components/SuItem.vue";
-import {reactive, ref} from "vue";
+import {reactive, ref, toRefs} from "vue";
+const props = defineProps({
+  suggestionList:Array
+})
 const suDataList = reactive(['卡卡西', '卡看男', '卡卡北', '卡卡东'])
+const {suggestionList} = toRefs(props)
 
 </script>
 

@@ -1,5 +1,5 @@
 // 防抖函数
-function debounce(func: Function, delay: number) {
+export function debounce(func: Function, delay: number) {
     let timer:number | null;
 
     return function (...args: any[]) {

@@ -7,7 +7,7 @@
       </div>
       <!--   搜索输入   -->
       <div class="input-box">
-        <input v-model="searchWord" placeholder="搜索...">
+        <input v-model="searchWord" @input="searchWordChangeHandel" placeholder="搜索...">
       </div>
       <!--   点击查询部分   -->
       <div class="search-icon">
@@ -16,8 +16,8 @@
     </div>
 
 
-    <div v-show="" class="su-box">
-      <suggestion-box/>
+    <div v-show="suBoxVisible" class="su-box">
+      <suggestion-box :suggestionList="suggestionList"/>
     </div>
 
   </div>
@@ -26,22 +26,44 @@
 <script setup lang="ts">
 
 
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import SuggestionBox from "@/views/Home/components/SearchBox/components/SuggestionBox.vue";
 import {getSearchSuggestions} from "@/api/home.ts";
+import {debounce} from '@/utils/debounce.ts'
 
+// 输入框数据
 const searchWord = ref('')
+// 建议列表
+const suggestionList = ref([])
+// suBox的可见性
+const suBoxVisible = ref(false)
 
-const getSuggestionList = ()=>{
-  getSearchSuggestions('').then(res=>{
+// 获取搜哦建议
+const getSuggestionList = debounce(() => {
+  getSearchSuggestions(searchWord.value).then(res => {
     return res.json()
-  }).then(res=>{
-    console.log('res',res)
+  }).then(res => {
+    // console.log('res',res)
+    // 改变su可见性
+    suBoxVisible.value = res.s && res.s.length > 0;
+    suggestionList.value = res.s;
+    console.log(res.s)
+  }).catch(err=>{
+    console.log(err)
   })
+}, 300)
+
+// 当数据发生改变触发
+const searchWordChangeHandel = () => {
+  if (searchWord.value && searchWord.value !== '') {
+    getSuggestionList()
+  } else {
+    suBoxVisible.value = false;
+  }
 }
 
-onMounted(()=>{
-  getSuggestionList()
+onMounted(() => {
+  // getSuggestionList()
 })
 
 </script>
@@ -109,7 +131,7 @@ onMounted(()=>{
 
   }
 
-  .su-box{
+  .su-box {
     position: absolute;
     top: 58px;
   }
