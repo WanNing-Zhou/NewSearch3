@@ -81,8 +81,6 @@ onBeforeUnmount(() => {
   background: radial-gradient(ellipse at center, #0a2e38 0%, #000000 80%);
   background-size: 100%;
   box-shadow:  0 0 20px #0aafe6, 0 0 4px rgba(10, 175, 230, 1);
-
-  position: relative;
   user-select: none;
 
   p {
@@ -92,7 +90,6 @@ onBeforeUnmount(() => {
 
   #clock {
     font-family: "Share Tech Mono", monospace;
-    color: #ffffff;
     text-align: center;
     position: absolute;
     left: 50%;
