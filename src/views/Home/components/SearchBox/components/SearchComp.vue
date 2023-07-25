@@ -2,7 +2,7 @@
   <div class="search-comp">
     <div class="search-input">
       <!--   输入盒子左搜索引擎图标  -->
-      <div class="search-icon engine-icon" :style="`background-image: url('${engin.imgUrl}')`">
+      <div class="search-icon engine-icon" @click="engineListVisible = !engineListVisible" :style="`background-image: url('${engin.imgUrl}')`">
         <img :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
       </div>
       <!--   搜索输入   -->
@@ -130,8 +130,6 @@ onMounted(() => {
 
       &:active{
         transform: scale(0.9);
-
-
       }
 
       img{
