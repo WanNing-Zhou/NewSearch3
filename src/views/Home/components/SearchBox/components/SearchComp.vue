@@ -55,6 +55,8 @@ const getSuggestionList = debounce(() => {
 
 // 当数据发生改变触发
 const searchWordChangeHandel = () => {
+
+  console.log('searchWord',searchWord.value)
   if (searchWord.value && searchWord.value !== '') {
     getSuggestionList()
   } else {

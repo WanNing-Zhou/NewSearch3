@@ -1,5 +1,5 @@
 <template>
-  <div class="time-box">
+  <div class="time-box hvr-float" >
     <!--    <span class="time-box-time">-->
     <!--                    {{ currentTime }}-->
     <!--    </span>-->
