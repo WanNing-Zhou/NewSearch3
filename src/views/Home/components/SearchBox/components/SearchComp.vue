@@ -2,16 +2,16 @@
   <div class="search-comp">
     <div class="search-input">
       <!--   输入盒子左搜索引擎图标  -->
-      <div class="search-icon">
-        <i></i>
+      <div class="search-icon engine-icon" :style="`background-image: url('${engin.imgUrl}')`">
+        <img :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
       </div>
       <!--   搜索输入   -->
       <div class="input-box">
-        <input v-model="searchWord" @input="searchWordChangeHandel" placeholder="搜索...">
+        <input v-model="searchWord" @keyup.enter="searchHandle" @input="searchWordChangeHandel" placeholder="搜索...">
       </div>
       <!--   点击查询部分   -->
-      <div class="search-icon">
-
+      <div class="search-icon" @click="searchHandle" >
+        <i></i>
       </div>
     </div>
 
@@ -20,23 +20,39 @@
       <suggestion-box :suggestionList="suggestionList"/>
     </div>
 
+    <div v-show="engineListVisible" class="engine-box">
+      <engine-list></engine-list>
+    </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
 
 
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref, toRefs} from "vue";
 import SuggestionBox from "@/views/Home/components/SearchBox/components/SuggestionBox.vue";
 import {getSearchSuggestions} from "@/api/home.ts";
 import {debounce} from '@/utils/debounce.ts'
+import EngineList from "@/views/Home/components/SearchBox/components/EngineList.vue";
+import {searchStore} from '@/store/searchStore.ts'
+
+
+const store = searchStore();
+
 
 // 输入框数据
-const searchWord = ref('')
+// const searchWord = ref('')
+
+const {searchWord,engin} = toRefs(store.currentSearch)
+
+
 // 建议列表
 const suggestionList = ref([])
 // suBox的可见性
 const suBoxVisible = ref(false)
+//搜索引擎列表可见性
+const engineListVisible = ref(false)
 
 // 获取搜哦建议
 const getSuggestionList = debounce(() => {
@@ -56,12 +72,17 @@ const getSuggestionList = debounce(() => {
 // 当数据发生改变触发
 const searchWordChangeHandel = () => {
 
-  console.log('searchWord',searchWord.value)
+  console.log('searchWord',searchWord)
   if (searchWord.value && searchWord.value !== '') {
     getSuggestionList()
   } else {
     suBoxVisible.value = false;
   }
+}
+
+const searchHandle = ()=>{
+  const  url = engin.value.searchUrl + searchWord.value;
+  window.open(url, '_blank')
 }
 
 onMounted(() => {
@@ -100,9 +121,27 @@ onMounted(() => {
       border-radius: 20px;
       background-color: #daf6ff;
       //transition: ;
-      &:hover {
-        transform: scale(1.1);
+      //&:hover {
+      //  transform: scale(1.1);
+      //}
+      -webkit-user-drag: none;
+      user-select: none;
+      cursor: pointer;
+
+      &:active{
+        transform: scale(0.9);
+
+
       }
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .engine-icon{
+      background-size: cover;
     }
 
     .input-box {
@@ -129,13 +168,16 @@ onMounted(() => {
         }
       }
     }
-
-
   }
 
   .su-box {
     position: absolute;
     top: 58px;
+  }
+
+  .engine-box{
+    position:absolute;
+    top:58px;
   }
 }
 

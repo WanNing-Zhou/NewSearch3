@@ -1,5 +1,5 @@
 <template>
-  <div class="su-item">
+  <div @click="useSu(su)" class="su-item">
     {{su}}
   </div>
 </template>
@@ -7,6 +7,9 @@
 <script setup lang="ts">
 
 import {toRefs} from "vue";
+import {searchStore} from "@/store/searchStore.ts";
+
+const store = searchStore()
 
 const props = defineProps({
   su:{
@@ -16,6 +19,15 @@ const props = defineProps({
 })
 
 let {su} = toRefs(props)
+
+// 搜索建议点击支持
+const useSu = (su)=>{
+  store.currentSearch.searchWord = su;
+  const url  = store.currentSearch.engin.searchUrl + su;
+  // 打开新的页面
+  window.open(url, '_blank')
+
+}
 
 </script>
 
