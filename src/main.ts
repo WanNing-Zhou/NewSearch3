@@ -22,8 +22,10 @@ import "wowjs/css/libs/animate.css";
 import 'normalize.css/normalize.css';
 // 和风天气图标
 import 'qweather-icons/font/qweather-icons.css'
-
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'animate.css'
+// import 'swiper/swiper.scss'
+// import 'swiper/swiper-bundle.css'
 
 // import './style.css'
 import App from './App.vue' //可能出现.vue后缀不识别问题
@@ -40,4 +42,5 @@ app.use(pinia)
 // app.use(WowPlugin)
 app.use(VueClipboard)
 app.use(router)
+// app.use(VueAwesomeSwiper)
 app.mount('#app')

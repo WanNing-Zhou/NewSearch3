@@ -23,18 +23,23 @@ const {name,imgUrl,searchUrl} = toRefs(props)
 
 <style lang="scss" scoped>
 .search-engine{
+  margin: 5px;
+  border-radius: 5px;
   width:40px;
   height: 40px;
   text-align: center;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
 
-
   .en-icon{
     width: 30px;
     height: 30px;
     background-size: cover;
     background-position: center;
+  }
+
+  .swiper-pagination-bullets.swiper-pagination-horizontal{
+    margin-top: 10px;
   }
 
 }
