@@ -26,12 +26,11 @@ import 'qweather-icons/font/qweather-icons.css'
 import 'animate.css'
 // import 'swiper/swiper.scss'
 // import 'swiper/swiper-bundle.css'
-
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import './style.css'
 import App from './App.vue' //可能出现.vue后缀不识别问题
 // import WowPlugin from './plugins/wow.ts'
 import router from "@/router/index.ts";
-
 // Vue.prototype.$wow = wow
 
 const pinia = createPinia()
@@ -42,5 +41,8 @@ app.use(pinia)
 // app.use(WowPlugin)
 app.use(VueClipboard)
 app.use(router)
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+}
 // app.use(VueAwesomeSwiper)
 app.mount('#app')
