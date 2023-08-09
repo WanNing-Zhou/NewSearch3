@@ -3,7 +3,7 @@
     <div class="search-input">
       <!--   输入盒子左搜索引擎图标  -->
       <div class="search-icon engine-icon" @click="engineListVisible = !engineListVisible" :style="`background-image: url('${engin.imgUrl}')`">
-        <img :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
+        <img class="search-img" :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
       </div>
       <!--   搜索输入   -->
       <div class="input-box">
@@ -34,7 +34,7 @@ import {onMounted, reactive, ref, toRefs} from "vue";
 import SuggestionBox from "@/views/Home/components/SearchBox/components/SuggestionBox.vue";
 import {getSearchSuggestions} from "@/api/home.ts";
 import {debounce} from '@/utils/debounce.ts'
-import EngineList from "@/views/Home/components/SearchBox/components/EngineList.vue";
+import EngineList from "@/views/Home/components/SearchBox/components/EngineList0.vue";
 import {searchStore} from '@/store/searchStore.ts'
 
 
@@ -132,6 +132,9 @@ onMounted(() => {
         transform: scale(0.9);
       }
 
+      .search-img{
+        pointer-events: none;
+      }
       img{
         width: 100%;
         height: 100%;

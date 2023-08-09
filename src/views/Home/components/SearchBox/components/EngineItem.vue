@@ -25,11 +25,11 @@ const {name,imgUrl,searchUrl} = toRefs(props)
 .search-engine{
   margin: 5px;
   border-radius: 5px;
-  width:40px;
-  height: 40px;
   text-align: center;
   padding: 20px;
+  font-size: 14px;
   background-color: rgba(255, 255, 255, 0.8);
+  user-select: none;
 
   .en-icon{
     width: 30px;

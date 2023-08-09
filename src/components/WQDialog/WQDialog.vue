@@ -9,7 +9,6 @@
 <template>
   <div class="wq-dialog" v-show="visible">
     <div class="wq-dialog-overlay" @click="closeDialog"></div>
-
     <div class="wq-dialog-content">
       <slot></slot>
     </div>
