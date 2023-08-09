@@ -19,6 +19,8 @@ import EngineItem from "@/views/Home/components/SearchBox/components/EngineItem.
 import useStore from "@/store/useStore.ts";
 import {toRefs} from "vue";
 
+const emit = defineEmits(['closeEngineList'])
+
 // 使用searchStore
 const {searchStore} = useStore
 const store = searchStore();
@@ -26,12 +28,11 @@ const store = searchStore();
 // 获取搜索引擎列表
 const {searchEngines} = toRefs(store)
 
-searchEngines.value = [...(searchEngines.value),...(searchEngines.value),...(searchEngines.value)]
-
-
 //切换搜索引擎
 const changeEngine = (engine)=>{
   store.currentSearch.engin = engine
+  // 关闭搜索引擎列表
+  emit('closeEngineList')
 }
 
 </script>
@@ -39,6 +40,8 @@ const changeEngine = (engine)=>{
 <style scoped>
 .engine-list{
   width: 600px;
+  box-sizing: border-box;
+  border: 4px;
   display: grid;
   grid-template-columns: repeat(7,80px);
   grid-gap: 6px ;

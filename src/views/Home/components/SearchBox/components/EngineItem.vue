@@ -1,6 +1,6 @@
 // 单一引擎组件
 <template>
-  <div class="search-engine">
+  <div class="search-engine hvr-float">
     <div class="en-icon" :style="`background-image: url('${imgUrl}')`"></div>
     <div>{{name}}</div>
   </div>
@@ -28,7 +28,7 @@ const {name,imgUrl,searchUrl} = toRefs(props)
   text-align: center;
   padding: 20px;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(134, 142, 150, 0.8);
   user-select: none;
 
   .en-icon{

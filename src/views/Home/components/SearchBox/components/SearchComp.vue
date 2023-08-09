@@ -2,7 +2,7 @@
   <div class="search-comp">
     <div class="search-input">
       <!--   输入盒子左搜索引擎图标  -->
-      <div class="search-icon engine-icon" @click="engineListVisible = !engineListVisible" :style="`background-image: url('${engin.imgUrl}')`">
+      <div class="search-icon engine-icon" @click.stop="engineListVisible = !engineListVisible">
         <img class="search-img" :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
       </div>
       <!--   搜索输入   -->
@@ -10,7 +10,7 @@
         <input v-model="searchWord" @keyup.enter="searchHandle" @input="searchWordChangeHandel" placeholder="搜索...">
       </div>
       <!--   点击查询部分   -->
-      <div class="search-icon" @click="searchHandle" >
+      <div class="search-icon" @click.stop="searchHandle" >
         <i></i>
       </div>
     </div>
@@ -21,7 +21,7 @@
     </div>
 
     <div v-show="engineListVisible" class="engine-box">
-      <engine-list></engine-list>
+      <engine-list @closeEngineList="closeEngineList"></engine-list>
     </div>
 
   </div>
@@ -80,9 +80,17 @@ const searchWordChangeHandel = () => {
   }
 }
 
+// 搜索狗能
 const searchHandle = ()=>{
+  // 获取搜索
   const  url = engin.value.searchUrl + searchWord.value;
   window.open(url, '_blank')
+}
+
+
+// 关闭引擎列表显示
+const closeEngineList = ()=>{
+  engineListVisible.value = false;
 }
 
 onMounted(() => {
@@ -127,6 +135,11 @@ onMounted(() => {
       -webkit-user-drag: none;
       user-select: none;
       cursor: pointer;
+      background-position: center;
+      background-size: 30px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:active{
         transform: scale(0.9);
@@ -134,10 +147,8 @@ onMounted(() => {
 
       .search-img{
         pointer-events: none;
-      }
-      img{
-        width: 100%;
-        height: 100%;
+        height: 30px;
+        width: 30px;
       }
     }
 
