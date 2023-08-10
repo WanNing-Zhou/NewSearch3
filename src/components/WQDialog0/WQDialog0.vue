@@ -10,7 +10,7 @@
           </slot>
           <button class="dialog_header_btn" @click="handleClose">
             <span class="remove" title="关闭">
-              <img src="/svgs/close.svg">
+              <SvgIcon name="close"></SvgIcon>
             </span>
           </button>
         </div>
@@ -40,6 +40,7 @@
 
 <script setup lang="ts">
 import {toRefs} from "vue";
+
 
 const props = defineProps({
   // 标题
