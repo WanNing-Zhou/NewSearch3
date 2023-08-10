@@ -56,6 +56,7 @@ const changeEngine = (engine) => {
   box-shadow: 0 0 10px #0aafe6, 0 0 10px rgba(10, 175, 230, 0);
 
   .add-engine-box{
+    cursor: pointer;
     margin: 5px;
     border-radius: 5px;
     text-align: center;
