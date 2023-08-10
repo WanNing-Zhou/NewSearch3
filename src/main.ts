@@ -32,6 +32,8 @@ import App from './App.vue' //可能出现.vue后缀不识别问题
 // import WowPlugin from './plugins/wow.ts'
 import router from "@/router/index.ts";
 // Vue.prototype.$wow = wow
+import "virtual:svg-icons-register";
+import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 
 const pinia = createPinia()
 
@@ -45,4 +47,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 // app.use(VueAwesomeSwiper)
+app.component('SvgIcon',SvgIcon)
 app.mount('#app')

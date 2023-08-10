@@ -1,22 +1,26 @@
 <template>
-  <div class="svg-icon">
-    <svg :class="className" aria-hidden="true" :style="iconStyle">
-      <use :xlink:href="iconName"/>
+    <svg
+        :class="className"
+        class="svg-icon"
+        :style="iconStyle"
+        aria-hidden="true"
+    >
+      <use :xlink:href="iconName"></use>
     </svg>
-  </div>
 </template>
 
 <script setup lang="ts">
 import {computed} from "vue";
 
 const props = defineProps({
+  // 类名
   className: {
     type: String,
     default: '',
   },
   iconStyle: {
-    type: String,
-    default: ''
+    type: Object,
+    default: ()=>({})
   },
   name: { //应用的图标名称
     type: String,
@@ -25,20 +29,18 @@ const props = defineProps({
 })
 
 const iconName = computed(() => {
-  return `/svgs/${props.name}.svg#icon`
+  return `#icon-${props.name}`
 })
 
 </script>
 
 <style lang="scss" scoped>
-.svg-icon {
   svg {
     width: 1em;
     height: 1em;
     vertical-align: -0.15em;
     fill: currentColor;
+    //fill:black;
     overflow: hidden;
   }
-
-}
 </style>
