@@ -1,6 +1,6 @@
 <template>
   <transition name="dialog-fade">
-    <dialog class="dialog_wrap" v-show="visible" @click.self="handleMaskClose">
+    <section class="dialog_wrap" v-show="visible" @click.self="handleMaskClose">
       <div class="dialog" :style="{width, marginTop: top}">
         <div class="dialog_header">
           <!--  标题的具名查早, 不传值得时候, 直接取title 否则天幻slot         -->
@@ -9,7 +9,9 @@
             >{{ title }}</span>
           </slot>
           <button class="dialog_header_btn" @click="handleClose">
-            <span class="remove" title="关闭"></span>
+            <span class="remove" title="关闭">
+              <img src="/svgs/close.svg">
+            </span>
           </button>
         </div>
         <!--       主题内容区域  -->
@@ -25,14 +27,14 @@
             <button class="dialog_footer_cancel" @click="handleCancel">
               取消
             </button>
-            <button class="dialog_footer_comfirm" @click="handleComfirm">
+            <button class="dialog_footer_confirm" @click="handleConfirm">
               确定
             </button>
           </slot>
         </div>
 
       </div>
-    </dialog>
+    </section>
   </transition>
 </template>
 
@@ -69,7 +71,7 @@ const props = defineProps({
 const {title, width, top, visible, mashFlag} = toRefs(props)
 
 
-const emit = defineEmits(['update:visible','handleCancel','handleConfirm'])
+const emit = defineEmits(['update:visible','cancel','confirm'])
 
 // 遮罩层关闭
 const handleMaskClose = ()=>{
@@ -85,12 +87,12 @@ const handleClose = ()=>{
 
 // 取消
 const handleCancel = () => {
-  emit('handleCancel')
+  emit('cancel')
 }
 
 // 提交
 const handleConfirm = ()=>{
-  emit('handleConfirm')
+  emit('confirm')
 }
 
 </script>
@@ -129,9 +131,11 @@ const handleConfirm = ()=>{
   .dialog {
     position: relative;
     margin: 15vh auto 50px;
+    border-radius: 4px;
     background: #fff;
     border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     width: 30%;
 
