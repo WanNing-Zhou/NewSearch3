@@ -1,6 +1,6 @@
 <template>
 
-  <div ref="bgImgBoxRef" class="backImgBox backImgBox-active" :style="`background-image:url('${bgUrl}')`" ></div>
+  <div ref="bgImgBoxRef" class="backImgBox backImgBox-active" @click.self="" :style="`background-image:url('${bgUrl}')`" ></div>
   <main-page/>
 </template>
 
@@ -9,7 +9,7 @@
 import {ref, reactive,computed, watch} from 'vue'
 import MainPage from './components/MainPage/index.vue'
 
-
+// :TODO 日后可开发更换地址功能
 // 背景图片地址
 const bgUrl = ref('http://8.130.140.206/imgs/bgimg5.jpg')
 // 屏幕宽度
@@ -22,6 +22,13 @@ const screenHeight = computed(()=>{
   console.log(window.innerHeight)
   return window.innerHeight + 'px'
 })
+
+
+// :TODO 点击的时候可以更改组件的可见性
+// 背景点击事件
+const bgClickHandle = ()=>{
+
+}
 
 </script>
 
