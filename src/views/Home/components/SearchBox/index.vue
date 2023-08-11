@@ -1,13 +1,13 @@
 <template>
   <!--  这个盒子是用来存输入框和时间box  -->
   <div id="SearAndTimeBox" class="search-box">
-    <div id="timeBox " v-show="timeBoxVisible" @click="timeBoxVisible=false" class="time-box">
+    <div id="timeBox " v-show="!searchBoxVisible" @click="openSearchBox" class="time-box">
             <span class="Atime ">
                     {{ currentTime }}
             </span>
     </div>
 
-    <search-comp v-show="!timeBoxVisible" />
+    <search-comp v-show="searchBoxVisible" />
 
     <!--    &lt;!&ndash;整个搜索盒子部分&ndash;&gt;
         <div id="searchAndIcons">
@@ -52,13 +52,18 @@
 
 <script setup lang="ts">
 
-import {onBeforeUnmount, onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref, toRefs} from "vue";
 import {getCurrentTime} from "@/utils/momentData.ts";
 import SearchComp from "@/views/Home/components/SearchBox/components/SearchComp.vue";
+import UseStore from "@/store/useStore.ts";
+
+const componentsVisibleStore = UseStore.componentsVisibleStore();
+const {searchBoxVisible} = toRefs(componentsVisibleStore)
+const {openSearchBox} = componentsVisibleStore
 
 const currentTime = ref(getCurrentTime())
 let timmer; // 定时器
-const timeBoxVisible = ref(true)
+
 onMounted(() => {
   timmer = setInterval(() => {
     currentTime.value = getCurrentTime()
