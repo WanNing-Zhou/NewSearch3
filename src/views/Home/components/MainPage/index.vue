@@ -1,6 +1,8 @@
 <template>
   <div class="main-page">
-    <time-box/>
+    <transition name="time-box">
+      <time-box v-show="searchBoxVisible"/>
+    </transition>
     <!--    搜索框-->
     <search-box></search-box>
   </div>
@@ -10,13 +12,29 @@
 import TimeBox from '../TimeBox/index.vue'
 import SearchBox from '../SearchBox/index.vue'
 import {getCurrentTime} from "@/utils/momentData.ts";
-import {computed} from "vue";
+import {computed, toRefs} from "vue";
+import useStore from "@/store/useStore.ts";
 
+const componentsVisibleStore = useStore.componentsVisibleStore()
 
+const {searchBoxVisible} = toRefs(componentsVisibleStore)
 
 </script>
 
 <style lang="scss" scoped>
+
+@keyframes time-box {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+
 .main-page {
   display: flex;
   flex-direction: column;
@@ -27,6 +45,20 @@ import {computed} from "vue";
   position: relative;
   z-index: 1;
   align-items: center;
+
+  .time-box-enter-active,
+  .time-box-leave-active {
+    transition: opacity 0.3s;
+    animation: time-box 0.4s;
+  }
+
+  .time-box-enter,
+  .time-box-leave-to {
+    opacity: 0;
+    animation: time-box 0.4s reverse;
+
+  }
+
 }
 
 

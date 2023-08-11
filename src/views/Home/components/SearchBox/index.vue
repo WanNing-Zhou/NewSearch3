@@ -2,7 +2,7 @@
   <!--  这个盒子是用来存输入框和时间box  -->
   <div id="SearAndTimeBox" class="search-box">
     <div id="timeBox "
-         v-show="!searchBoxVisible"
+         v-if="!searchBoxVisible"
          @click="timeBoxClickHandel"
          class="time-box"
          :style="{
@@ -83,10 +83,11 @@ const timeBoxClickHandel = () => {
 const timeBoxDiaplay: Ref<null | string> = ref(null)
 // 见行searchBox的可见性
 watch(searchBoxVisible, (newValue, oldValue) => {
-  console.log('事件触发了', newValue, oldValue)
+  // console.log('事件触发了', newValue, oldValue)
   if (searchBoxVisible.value) {
     timeBoxClass.value = 'time-box-off'
   } else {
+    // 这里需要异步,等页面加载后再更换类名, 不然没有动画效果
     setTimeout(()=>{
       timeBoxClass.value = 'time-box-on'
     },)
