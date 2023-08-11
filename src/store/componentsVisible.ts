@@ -26,5 +26,12 @@ export const componentsVisibleStore = defineStore({
         closeSearchBox(){
             this.searchBoxVisible = false
         },
+
+        // 点击背景,隐藏组件
+        cancelVisible(){
+            console.log('点击事件触发了')
+            this.closeSearchBox();
+        }
+
     },
 })

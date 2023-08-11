@@ -1,13 +1,18 @@
 <template>
 
-  <div ref="bgImgBoxRef" class="backImgBox backImgBox-active" @click.self="" :style="`background-image:url('${bgUrl}')`" ></div>
-  <main-page/>
+  <div ref="bgImgBoxRef" class="backImgBox backImgBox-active"  :style="`background-image:url('${bgUrl}')`" ></div>
+  <main-page @click.self="cancelVisible"/>
 </template>
 
 <script setup lang="ts">
 
 import {ref, reactive,computed, watch} from 'vue'
 import MainPage from './components/MainPage/index.vue'
+import useStore from "@/store/useStore.ts";
+
+const componentsVisibleStore = useStore.componentsVisibleStore();
+
+const {cancelVisible} = componentsVisibleStore;
 
 // :TODO 日后可开发更换地址功能
 // 背景图片地址
