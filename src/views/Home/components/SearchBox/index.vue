@@ -15,7 +15,7 @@
             </span>
     </div>
 
-    <search-comp v-show="searchBoxVisible"/>
+    <search-comp ref="searchInput" v-show="searchBoxVisible"/>
 
     <!--    &lt;!&ndash;整个搜索盒子部分&ndash;&gt;
         <div id="searchAndIcons">
@@ -68,11 +68,12 @@ import UseStore from "@/store/useStore.ts";
 const componentsVisibleStore = UseStore.componentsVisibleStore();
 const {searchBoxVisible} = toRefs(componentsVisibleStore)
 const {openSearchBox} = componentsVisibleStore
-
+// 获取当前时间
 const currentTime = ref(getCurrentTime())
 let timmer; // 定时器
 
 const timeBoxClass = ref('time-box-on')
+
 
 // timeBox点击逻辑
 const timeBoxClickHandel = () => {
@@ -91,7 +92,6 @@ watch(searchBoxVisible, (newValue, oldValue) => {
     setTimeout(()=>{
       timeBoxClass.value = 'time-box-on'
     },)
-
   }
 }, {deep: true})
 

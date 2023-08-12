@@ -2,7 +2,7 @@
   <div class="search-comp">
     <div class="search-input">
       <!--   输入盒子左搜索引擎图标  -->
-      <div class="search-icon engine-icon" @click.stop="engineListVisible = !engineListVisible">
+      <div class="search-icon engine-icon" @click.stop="engineClickHandle">
         <img class="search-img" :src="engin.imgUrl" :alt="engin.name" :title="engin.name">
       </div>
       <!--   搜索输入   -->
@@ -10,18 +10,17 @@
         <input v-model="searchWord" @keyup.enter="searchHandle" @input="searchWordChangeHandel" placeholder="搜索...">
       </div>
       <!--   点击查询部分   -->
-      <div class="search-icon" @click.stop="searchHandle" >
-        <i></i>
+      <div class="search-icon" @click.stop="searchHandle">
+        <svg-icon name="search"></svg-icon>
       </div>
     </div>
-
 
     <div v-show="suBoxVisible" class="su-box">
       <suggestion-box :suggestionList="suggestionList"/>
     </div>
 
     <div v-show="engineListVisible" class="engine-box">
-      <engine-list @closeEngineList="closeEngineList"></engine-list>
+      <engine-list @closeEngineList="closeEngineListBox"></engine-list>
     </div>
 
   </div>
@@ -36,35 +35,40 @@ import {getSearchSuggestions} from "@/api/home.ts";
 import {debounce} from '@/utils/debounce.ts'
 import EngineList from "@/views/Home/components/SearchBox/components/EngineList0.vue";
 import {searchStore} from '@/store/searchStore.ts'
+import UseStore from "@/store/useStore.ts";
 
-
+const componentsVisibleStore = UseStore.componentsVisibleStore()
 const store = searchStore();
 
-
+const {suBoxVisible, engineListVisible} = toRefs(componentsVisibleStore)
+const {openSuBox, closeSuBox, openEngineListBox, closeEngineListBox} = componentsVisibleStore
 // 输入框数据
 // const searchWord = ref('')
 
-const {searchWord,engin} = toRefs(store.currentSearch)
+const {searchWord, engin} = toRefs(store.currentSearch)
 
 
 // 建议列表
 const suggestionList = ref([])
 // suBox的可见性
-const suBoxVisible = ref(false)
+// const suBoxVisible = ref(false)
 //搜索引擎列表可见性
-const engineListVisible = ref(false)
+// const engineListVisible = ref(false)
 
-// 获取搜哦建议
+// 获取搜索建议
 const getSuggestionList = debounce(() => {
   getSearchSuggestions(searchWord.value).then(res => {
     return res.json()
   }).then(res => {
     // console.log('res',res)
     // 改变su可见性
-    suBoxVisible.value = res.s && res.s.length > 0;
+    // suBoxVisible.value = res.s && res.s.length > 0;
+    if (res.s && res.s.length > 0) {
+      openSuBox()
+    }
     suggestionList.value = res.s;
-    console.log(res.s)
-  }).catch(err=>{
+    // console.log(res.s)
+  }).catch(err => {
     console.log(err)
   })
 }, 300)
@@ -72,25 +76,36 @@ const getSuggestionList = debounce(() => {
 // 当数据发生改变触发
 const searchWordChangeHandel = () => {
 
-  console.log('searchWord',searchWord)
+  // console.log('searchWord',searchWord)
   if (searchWord.value && searchWord.value !== '') {
     getSuggestionList()
   } else {
-    suBoxVisible.value = false;
+    closeSuBox();
   }
 }
 
-// 搜索狗能
-const searchHandle = ()=>{
+// 搜索功能
+const searchHandle = () => {
   // 获取搜索
-  const  url = engin.value.searchUrl + searchWord.value;
+  const url = engin.value.searchUrl + searchWord.value;
   window.open(url, '_blank')
 }
 
+// 引擎点击事件
+const engineClickHandle = () => {
+  console.log('enginListVisible', engineListVisible.value)
+  if (engineListVisible.value) {
+    closeEngineListBox()
+  } else {
+    openEngineListBox()
+  }
+
+}
 
 // 关闭引擎列表显示
-const closeEngineList = ()=>{
-  engineListVisible.value = false;
+const closeEngineList = () => {
+  closeEngineListBox()
+
 }
 
 onMounted(() => {
@@ -141,18 +156,18 @@ onMounted(() => {
       justify-content: center;
       align-items: center;
 
-      &:active{
+      &:active {
         transform: scale(0.9);
       }
 
-      .search-img{
+      .search-img {
         pointer-events: none;
         height: 30px;
         width: 30px;
       }
     }
 
-    .engine-icon{
+    .engine-icon {
       background-size: cover;
     }
 
@@ -187,9 +202,9 @@ onMounted(() => {
     top: 58px;
   }
 
-  .engine-box{
-    position:absolute;
-    top:58px;
+  .engine-box {
+    position: absolute;
+    top: 58px;
   }
 }
 
