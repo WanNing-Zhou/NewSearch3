@@ -7,7 +7,7 @@
 */
 
 <template>
-  <div class="one-word-box">
+  <div class="one-word-box animate__zoomInDown animated">
     <ground-glass :groundGlassStyle="{width:null, height: null, paddingBottom: '40px'}">
       <div class="sentence">
         <div id="hitokoto" class="hitokoto-fullpage">
@@ -17,7 +17,10 @@
           <br>
           <div class="bracket-right">』</div>
         </div>
-        <div class="author hitokoto-author">{{ oneWordData.fromContent }}</div>
+        <div class="one-word-options">
+          <div></div>
+          <div class="author hitokoto-author">{{ oneWordData.fromContent }}</div>
+        </div>
       </div>
     </ground-glass>
   </div>
@@ -75,7 +78,7 @@ onMounted(
   .sentence {
     width: 24rem;
     padding: 1rem 1rem;
-
+    display: flow-root;
     border-radius: 1rem;
     color: rgba(255, 255, 255, 0.9);
     left: 50%;
