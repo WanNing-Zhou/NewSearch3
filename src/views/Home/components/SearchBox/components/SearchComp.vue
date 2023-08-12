@@ -48,7 +48,7 @@ const {openSuBox, closeSuBox, openEngineListBox, closeEngineListBox} = component
 const searchInput = ref()
 watch(searchBoxVisible, ()=>{
   if(searchBoxVisible.value){
-    console.log('进入了这个方法', searchInput.value)
+    // console.log('进入了这个方法', searchInput.value)
     nextTick(()=>{
       searchInput.value.focus();
     })
