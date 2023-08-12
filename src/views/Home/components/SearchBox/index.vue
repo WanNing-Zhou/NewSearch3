@@ -15,7 +15,7 @@
             </span>
     </div>
 
-    <search-comp ref="searchInput" v-show="searchBoxVisible"/>
+    <search-comp v-show="searchBoxVisible"/>
 
     <!--    &lt;!&ndash;整个搜索盒子部分&ndash;&gt;
         <div id="searchAndIcons">

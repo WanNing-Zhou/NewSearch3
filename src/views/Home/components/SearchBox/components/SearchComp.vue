@@ -7,7 +7,7 @@
       </div>
       <!--   搜索输入   -->
       <div class="input-box">
-        <input v-model="searchWord" @keyup.enter="searchHandle" @input="searchWordChangeHandel" placeholder="搜索...">
+        <input ref="searchInput" v-model="searchWord" @keyup.enter="searchHandle" @input="searchWordChangeHandel" placeholder="搜索...">
       </div>
       <!--   点击查询部分   -->
       <div class="search-icon" @click.stop="searchHandle">
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 
 
-import {onMounted, reactive, ref, toRefs} from "vue";
+import {nextTick, onMounted, reactive, ref, toRefs, watch} from "vue";
 import SuggestionBox from "@/views/Home/components/SearchBox/components/SuggestionBox.vue";
 import {getSearchSuggestions} from "@/api/home.ts";
 import {debounce} from '@/utils/debounce.ts'
@@ -40,10 +40,21 @@ import UseStore from "@/store/useStore.ts";
 const componentsVisibleStore = UseStore.componentsVisibleStore()
 const store = searchStore();
 
-const {suBoxVisible, engineListVisible} = toRefs(componentsVisibleStore)
+const {suBoxVisible, engineListVisible, searchBoxVisible} = toRefs(componentsVisibleStore)
 const {openSuBox, closeSuBox, openEngineListBox, closeEngineListBox} = componentsVisibleStore
 // 输入框数据
 // const searchWord = ref('')
+
+const searchInput = ref()
+watch(searchBoxVisible, ()=>{
+  if(searchBoxVisible.value){
+    console.log('进入了这个方法', searchInput.value)
+    nextTick(()=>{
+      searchInput.value.focus();
+    })
+
+  }
+},{deep:true})
 
 const {searchWord, engin} = toRefs(store.currentSearch)
 

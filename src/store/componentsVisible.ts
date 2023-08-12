@@ -57,9 +57,6 @@ export const componentsVisibleStore = defineStore({
             }else{
                 this.closeSearchBox();
             }
-
-
-
         }
 
     },
