@@ -16,6 +16,7 @@
     </div>
 
     <search-comp v-show="searchBoxVisible"/>
+    <one-word-box></one-word-box>
 
   </div>
 </template>
@@ -26,6 +27,7 @@ import {onBeforeUnmount, onMounted, Ref, ref, toRefs, watch} from "vue";
 import SearchComp from "@/views/Home/components/SearchBox/components/SearchComp.vue";
 import UseStore from "@/store/useStore.ts";
 import {useCurrentTimeData} from "@/utils/time.ts";
+import OneWordBox from '@/views/Home/components/oneWordBox/index.vue'
 
 const componentsVisibleStore = UseStore.componentsVisibleStore();
 const {searchBoxVisible} = toRefs(componentsVisibleStore)
