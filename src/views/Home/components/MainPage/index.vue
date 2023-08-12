@@ -1,5 +1,5 @@
 <template>
-  <div class="main-page">
+  <div class="main-page" :class="mainPageClass">
     <transition name="time-box">
       <time-box v-show="searchBoxVisible"/>
     </transition>
@@ -11,13 +11,16 @@
 <script setup lang="ts">
 import TimeBox from '../TimeBox/index.vue'
 import SearchBox from '../SearchBox/index.vue'
-import {getCurrentTime} from "@/utils/momentData.ts";
 import {computed, toRefs} from "vue";
 import useStore from "@/store/useStore.ts";
 
 const componentsVisibleStore = useStore.componentsVisibleStore()
 
 const {searchBoxVisible} = toRefs(componentsVisibleStore)
+
+const mainPageClass = computed(()=>{
+  return searchBoxVisible.value ? 'main-page-bg-color' : ''
+})
 
 </script>
 
@@ -40,7 +43,7 @@ const {searchBoxVisible} = toRefs(componentsVisibleStore)
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
+  //background-color: rgba(0, 0, 0, 0.5);
   //background-color:red ;
   position: relative;
   z-index: 1;
@@ -52,6 +55,8 @@ const {searchBoxVisible} = toRefs(componentsVisibleStore)
     animation: time-box 0.4s;
   }
 
+
+
   .time-box-enter,
   .time-box-leave-to {
     opacity: 0;
@@ -59,6 +64,10 @@ const {searchBoxVisible} = toRefs(componentsVisibleStore)
 
   }
 
+}
+
+.main-page-bg-color {
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 

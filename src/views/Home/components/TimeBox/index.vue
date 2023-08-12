@@ -1,10 +1,5 @@
 <template>
   <div class="time-box hvr-float" >
-    <!--    <span class="time-box-time">-->
-    <!--                    {{ currentTime }}-->
-    <!--    </span>-->
-
-)
     <div id="clock">
       <p class="date">{{ currentDate }}</p>
       <p class="time">{{ currentTime }}</p>
@@ -20,16 +15,14 @@
 </template>
 
 <script setup lang="ts">
-import {getCurrentDate, getCurrentTime} from "@/utils/momentData.ts";
-import {computed, ref, watch, onMounted, onBeforeUpdate, onBeforeUnmount, reactive} from "vue";
+import { onMounted, onBeforeUnmount, reactive} from "vue";
 import {getWeather} from "@/api/home.ts";
 import {getWeatherIcon} from "@/utils/weather.ts";
+import {useCurrentTimeData} from "@/utils/time.ts";
 
 // 当前时间
-const currentTime = ref(getCurrentTime())
-const currentDate = ref(getCurrentDate())
+const {currentTime,currentDate}  = useCurrentTimeData();
 
-let timmer; // 定时器Id
 const weatherInfo = reactive({
   city:'',
   wea:'' ,
@@ -41,7 +34,7 @@ const weatherInfo = reactive({
 // 获取天气
 const getWeatherInfo= ()=> {
   getWeather().then(res=>{
-    console.log(res)
+    // console.log(res)
     // weatherInfo.value = `${res.data.city}  ${res.data.data[0].wea}  ${res.data.data[0].tem_day}~${res.data.data[0].tem_night}`
     weatherInfo.city = res.data.city;
     weatherInfo.wea = res.data.data[0].wea;
@@ -51,18 +44,11 @@ const getWeatherInfo= ()=> {
   })
 }
 onMounted(() => {
-  timmer = setInterval(() => {
-        currentTime.value = getCurrentTime();
-        currentDate.value = getCurrentDate()
-      }, 1000
-  )
-
   getWeatherInfo()
 })
 
 onBeforeUnmount(() => {
-  // 销毁前清除定时器
-  clearInterval(timmer)
+
 })
 
 </script>
