@@ -5,6 +5,7 @@
     </transition>
     <!--    搜索框-->
     <search-box></search-box>
+    <one-word-box></one-word-box>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import TimeBox from '../TimeBox/index.vue'
 import SearchBox from '../SearchBox/index.vue'
 import {computed, toRefs} from "vue";
 import useStore from "@/store/useStore.ts";
+import OneWordBox from "@/views/Home/components/oneWordBox/index.vue";
 
 const componentsVisibleStore = useStore.componentsVisibleStore()
 
@@ -61,7 +63,6 @@ const mainPageClass = computed(()=>{
   .time-box-leave-to {
     opacity: 0;
     animation: time-box 0.4s reverse;
-
   }
 
 }

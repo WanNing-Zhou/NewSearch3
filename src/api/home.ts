@@ -19,3 +19,8 @@ export async function getSearchSuggestions(val:string){
         jsonpCallbackFunction:'function_name_of_jsonp_response'
     })
 }
+
+// 获取一言
+export async function getOneWord(){
+    return request.get(api.oneWord)
+}
