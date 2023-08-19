@@ -24,7 +24,7 @@
     "swiper": "^10.0.4",
     "vue": "^3.3.4",
     "vue-awesome-swiper": "^5.0.1",
-    "vue-clipboard2": "^0.3.3",
+    "vue-clipboard3": "^2.0.0",
     "vue-jsonp": "^2.0.0",
     "vue-router": "^4.2.4",
     "wowjs": "^1.1.3"

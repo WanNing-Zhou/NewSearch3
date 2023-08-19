@@ -4,7 +4,7 @@
     <div
          v-if="!searchBoxVisible"
          @click="timeBoxClickHandel"
-         class="time-box bounce animated"
+         class="time-box"
          :style="{
            display:timeBoxDiaplay,
          }"

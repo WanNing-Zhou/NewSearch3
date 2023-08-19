@@ -12,7 +12,8 @@ import {createApp} from 'vue'
 import 'hover.css/css/hover.css'
 import {createPinia} from 'pinia'
 import ElementPlus from 'element-plus'
-import VueClipboard from 'vue-clipboard2'
+import 'element-plus/dist/index.css'
+// import VueClipboard from 'vue-clipboard2'
 
 // import wow from 'wowjs'
 // 使用animate.css的方式
@@ -34,6 +35,7 @@ import router from "@/router/index.ts";
 // Vue.prototype.$wow = wow
 import "virtual:svg-icons-register";
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
+import '@/assets/styles/gloable.scss'
 
 const pinia = createPinia()
 
@@ -41,7 +43,8 @@ const app = createApp(App);
 app.use(ElementPlus)
 app.use(pinia)
 // app.use(WowPlugin)
-app.use(VueClipboard)
+// app.use(VueClipboard)
+
 app.use(router)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)

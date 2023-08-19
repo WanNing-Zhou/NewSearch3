@@ -8,7 +8,7 @@
 
 <template>
   <div class="one-word-box animate__zoomInDown animated">
-    <ground-glass :groundGlassStyle="{width:null, height: null, paddingBottom: '40px'}">
+    <ground-glass :groundGlassStyle="{width:null, height: null, display:'flow-root'}">
       <div class="sentence">
         <div id="hitokoto" class="hitokoto-fullpage">
           <div class="bracket-left">『</div>
@@ -17,10 +17,13 @@
           <br>
           <div class="bracket-right">』</div>
         </div>
-        <div class="one-word-options">
-          <div></div>
+        <div>
           <div class="author hitokoto-author">{{ oneWordData.fromContent }}</div>
         </div>
+      </div>
+      <div class="one-word-options">
+        <span><SvgIcon @click="copy" name="copy"></SvgIcon></span>
+        <span><SvgIcon @click="getOneWordHandle"  name="refresh"></SvgIcon></span>
       </div>
     </ground-glass>
   </div>
@@ -28,10 +31,15 @@
 
 <script setup lang="ts">
 
-import GroundGlass from "@/components/GroundGlass/GroundGlass.vue";
-import {getOneWord} from "@/api/home.ts";
+
 import {computed, onMounted, Ref, ref} from "vue";
 import {AxiosResponse} from "axios";
+import useClipboard from 'vue-clipboard3'
+import { ElMessage } from 'element-plus'
+import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
+import GroundGlass from "@/components/GroundGlass/GroundGlass.vue";
+import {getOneWord} from "@/api/home.ts";
+
 
 interface OneWord {
   from_who: string | null //作者
@@ -55,6 +63,24 @@ const getOneWordHandle = () => {
   })
 }
 
+const { toClipboard } = useClipboard()
+
+const copy = async () => {
+  try {
+    if(oneWordData.value.hitokoto){
+      await toClipboard(oneWordData.value.hitokoto)
+    }
+    ElMessage({
+      message: '复制成功',
+      type: 'success',
+      customClass: 'message-success'
+    })
+    // console.log('Copied to clipboard')
+  } catch (e) {
+    // console.error(e)
+  }
+}
+
 onMounted(
     () => {
       getOneWordHandle()
@@ -71,9 +97,9 @@ onMounted(
   bottom: 50px;
   z-index: -1;
 
-  &:hover {
+/*  &:hover {
     transform: rotate3d(1, 1, 0, 15deg);
-  }
+  }*/
 
   .sentence {
     width: 24rem;
@@ -127,7 +153,22 @@ onMounted(
 
   }
 
+  .one-word-options{
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 24px;
+    font-size: 18px;
+    color: #ffffff;
+    &>span{
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
 }
+
 
 
 </style>

@@ -5,7 +5,7 @@
     </transition>
     <!--    搜索框-->
     <search-box></search-box>
-    <one-word-box></one-word-box>
+    <one-word-box v-show="searchBoxVisible"></one-word-box>
   </div>
 </template>
 
