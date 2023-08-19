@@ -6,6 +6,10 @@
     <!--    搜索框-->
     <search-box></search-box>
     <one-word-box v-show="searchBoxVisible"></one-word-box>
+
+    <section class="right-aside">
+    <OptionBox></OptionBox>
+    </section>
   </div>
 </template>
 
@@ -15,6 +19,7 @@ import SearchBox from '../SearchBox/index.vue'
 import {computed, toRefs} from "vue";
 import useStore from "@/store/useStore.ts";
 import OneWordBox from "@/views/Home/components/oneWordBox/index.vue";
+import OptionBox from "@/views/Home/components/OptionBox/OptionBox.vue";
 
 const componentsVisibleStore = useStore.componentsVisibleStore()
 
@@ -63,6 +68,14 @@ const mainPageClass = computed(()=>{
   .time-box-leave-to {
     opacity: 0;
     animation: time-box 0.4s reverse;
+  }
+
+
+  .right-aside{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    right: 0;
   }
 
 }
