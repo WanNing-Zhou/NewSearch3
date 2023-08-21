@@ -5,13 +5,12 @@
 **/
 
 <template>
-  <div class="wq-ground-glass" :style="groundGlassStyle">
+  <div class="wq-ground-glass"  :style="groundGlassStyle">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
-
 
 const props = defineProps(
     {
@@ -20,7 +19,7 @@ const props = defineProps(
         default:{
           height: '200px'
         }
-      }
+      },
     }
 )
 

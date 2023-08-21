@@ -1,10 +1,10 @@
-/*  *
-  * @FileNAme src\components\WQDialog\WQDialog.vue
-  * @author 周万宁
-  * @create 2023/8/4-16:42
-  * @version
-  * @description 弹出框组件
-  */
+<!--
+  @FileNAme src\components\WQDialog\WQDialog.vue
+  @author 周万宁
+  @create 2023/8/21-21:15
+  @version
+  @description 弹出框
+ -->
 
 <template>
   <div class="wq-dialog" v-show="visible">
@@ -20,7 +20,6 @@
 const props = defineProps({
   visible:Boolean, //dialog 可见性
 })
-
 const emit = defineEmits(['close'])
 
 // 弹出框关闭方法

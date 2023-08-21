@@ -1,3 +1,19 @@
 .message-success{
   border-radius: 30px !important;
 }
+
+//transition: property duration timing-function delay;
+.wq-hover-rotate-180{
+  transition: transform 0.5s ease-out ;
+  &:hover{
+    transform: rotate(180deg);
+  }
+}
+
+.wq-hover-rotate-360{
+  transition: transform 1s ease;
+  &:hover{
+    transform: rotate(360deg);
+  }
+}
+

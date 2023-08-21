@@ -1,9 +1,18 @@
+<!--
+  @FileNAme src\components\WQDialog0\WQDialog0.vue
+  @author 周万宁
+  @create 2023/8/21-19:48
+  @version
+  @description
+ -->
+
 <template>
   <transition name="dialog-fade">
     <section class="dialog_wrap" v-show="visible" @click.self="handleMaskClose">
       <div class="dialog" :style="{width, marginTop: top}">
+
         <div class="dialog_header">
-          <!--  标题的具名查早, 不传值得时候, 直接取title 否则天幻slot         -->
+          <!--  标题的具名查早, 不传值得时候, 直接取title 否则替换slot   -->
           <slot name="title">
             <span class="dialog_header_title"
             >{{ title }}</span>
@@ -32,7 +41,6 @@
             </button>
           </slot>
         </div>
-
       </div>
     </section>
   </transition>

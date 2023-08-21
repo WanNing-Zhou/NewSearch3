@@ -10,6 +10,8 @@
     <section class="right-aside">
     <OptionBox></OptionBox>
     </section>
+
+    <PageConfig></PageConfig>
   </div>
 </template>
 
@@ -20,6 +22,7 @@ import {computed, toRefs} from "vue";
 import useStore from "@/store/useStore.ts";
 import OneWordBox from "@/views/Home/components/oneWordBox/index.vue";
 import OptionBox from "@/views/Home/components/OptionBox/OptionBox.vue";
+import PageConfig from "@/views/Home/components/PageConfig/PageConfig.vue";
 
 const componentsVisibleStore = useStore.componentsVisibleStore()
 
