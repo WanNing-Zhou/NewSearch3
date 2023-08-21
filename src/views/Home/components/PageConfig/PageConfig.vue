@@ -1,7 +1,33 @@
 <template>
-  <GroundGlass class="page-config" style="">
+  <div>
+    <GroundGlass
+        class="page-config animate__bounceInLeft animated"
+        @click="dialogVisible = true"
+    >
       <SvgIcon name="config" class="wq-hover-rotate-180"></SvgIcon>
-  </GroundGlass>
+    </GroundGlass>
+
+    <WQDialog0
+        :style="{
+          margin: 0,
+          left: '60px',
+          bottom: '70px',
+          width: '400px',
+          position: 'absolute'
+        }"
+        v-model:visible="dialogVisible">
+
+      <el-container>
+        <el-aside width="80px">
+          你好
+        </el-aside>
+        <el-main>
+          这是一个简单的语句
+        </el-main>
+      </el-container>
+    </WQDialog0>
+
+  </div>
 
 </template>
 
@@ -9,6 +35,10 @@
 
 import GroundGlass from "@/components/GroundGlass/GroundGlass.vue";
 
+import {ref} from "vue";
+import WQDialog0 from "@/components/WQDialog0/WQDialog0.vue";
+
+const dialogVisible = ref(false)
 
 </script>
 
@@ -26,8 +56,8 @@ import GroundGlass from "@/components/GroundGlass/GroundGlass.vue";
   padding: 5px;
   cursor: pointer;
 
-  &:hover{
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  &:hover {
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
   }
 }
 

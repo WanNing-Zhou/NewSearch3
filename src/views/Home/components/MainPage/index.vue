@@ -11,7 +11,7 @@
     <OptionBox></OptionBox>
     </section>
 
-    <PageConfig></PageConfig>
+    <PageConfig v-show="searchBoxVisible"></PageConfig>
   </div>
 </template>
 

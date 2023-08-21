@@ -9,12 +9,12 @@
 <template>
   <transition name="dialog-fade">
     <section class="dialog_wrap" v-show="visible" @click.self="handleMaskClose">
-      <div class="dialog" :style="{width, marginTop: top}">
+      <div class="dialog" :style="style">
 
         <div class="dialog_header">
           <!--  标题的具名查早, 不传值得时候, 直接取title 否则替换slot   -->
           <slot name="title">
-            <span class="dialog_header_title"
+            <span v-if="title" class="dialog_header_title"
             >{{ title }}</span>
           </slot>
           <button class="dialog_header_btn" @click="handleClose">
@@ -30,7 +30,8 @@
           </slot>
         </div>
 
-        <div class="dialog_footer">
+        <slot name="footer"></slot>
+<!--        <div class="dialog_footer">
           <slot name="footer"></slot>
           <slot name="footer">
             <button class="dialog_footer_cancel" @click="handleCancel">
@@ -40,7 +41,7 @@
               确定
             </button>
           </slot>
-        </div>
+        </div>-->
       </div>
     </section>
   </transition>
@@ -54,7 +55,7 @@ const props = defineProps({
   // 标题
   title: {
     type: String,
-    default: '消息',
+    default: '',
   },
   // 宽度
   width: {
@@ -65,6 +66,9 @@ const props = defineProps({
   top: {
     type: String,
     default: "15vh"
+  },
+  style: {
+    type: Object
   },
   // 可见性
   visible: {
@@ -86,7 +90,6 @@ const emit = defineEmits(['update:visible','cancel','confirm'])
 const handleMaskClose = ()=>{
   if (!mashFlag) return false;
   emit("update:visible", false)
-
 }
 
 // 关闭
@@ -135,29 +138,29 @@ const handleConfirm = ()=>{
   overflow: auto;
   margin: 0;
   z-index: 2001;
-  background: rgba(0, 0, 0, 0.5);
+  //background: rgba(0, 0, 0, 0.5);
 
   .dialog {
     position: relative;
     margin: 15vh auto 50px;
     border-radius: 4px;
     background: #fff;
-    border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
     //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     width: 30%;
+    padding: 10px;
 
     & > .dialog_header {
-      padding: 20px 20px 10px;
-      line-height: 24px;
+      //padding: 20px 20px 10px;
+      //line-height: 24px;
       font-size: 18px;
       color: #303133;
 
       .dialog_header_btn {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        //top: 20px;
+        right: 10px;
         padding: 0;
         background: transparent;
         border: none;
@@ -174,13 +177,11 @@ const handleConfirm = ()=>{
         cursor: pointer;
       }
 
-      .removes::before {
-        content: "\2716";
-      }
     }
 
     & > .dialog_body {
-      padding: 30px 20px;
+      //padding: 30px 20px;
+      padding-top: 20px;
       color: #606266;
       font-size: 14px;
       word-break: break-all;
