@@ -9,15 +9,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     GroundGlass: typeof import('./src/components/GroundGlass/GroundGlass.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    Home: typeof import('./src/views/Home/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
     WQDialog: typeof import('./src/components/WQDialog/WQDialog.vue')['default']
     WQDialog0: typeof import('./src/components/WQDialog0/WQDialog0.vue')['default']
     WqPopup: typeof import('./src/components/WUPopup/wqPopup.vue')['default']
-    WQPopup: typeof import('./src/components/WUPopup/WQPopup.vue')['default']
-    WuPopup: typeof import('./src/components/WUPopup/WuPopup.vue')['default']
-    WuPopUp: typeof import('./src/components/WUPopup/WuPopUp.vue')['default']
   }
 }
