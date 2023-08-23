@@ -23,7 +23,7 @@ const bgClass = computed(()=>{
 
 // :TODO 日后可开发更换地址功能
 // 背景图片地址
-const bgUrl = ref('http://8.130.140.206/imgs/bgimg5.jpg')
+const bgUrl = ref('imgs/background/img.png')
 // 屏幕宽度
 const screenWidth = computed(()=>{
   console.log(window.innerWidth)
