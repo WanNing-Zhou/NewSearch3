@@ -12,35 +12,42 @@
           margin: 0,
           left: '60px',
           bottom: '70px',
+          width: '700px',
           position: 'absolute'
         }"
         v-model:visible="dialogVisible">
 
       <el-container>
-        <el-button @click="isCollapse = !isCollapse">开关</el-button>
-      <div class="page-aside">
-        <el-aside>
+        <div class="page-aside">
           <el-menu
               default-active="1"
               :collapse="isCollapse"
           >
-            <el-menu-item index="4">
-              <el-icon><setting /></el-icon>
+            <el-menu-item index="1">
+              <el-icon>
+                <setting/>
+              </el-icon>
               <template #title>Navigator Four</template>
             </el-menu-item>
-            <el-menu-item index="4">
-              <el-icon><setting /></el-icon>
+            <el-menu-item index="2">
+              <el-icon>
+                <setting/>
+              </el-icon>
               <template #title>Navigator Four</template>
             </el-menu-item>
-            <el-menu-item index="4">
-              <el-icon><setting /></el-icon>
+            <el-menu-item index="3">
+              <el-icon>
+                <setting/>
+              </el-icon>
               <template #title>Navigator Four</template>
             </el-menu-item>
-
           </el-menu>
-        </el-aside>
-      </div>
-
+          <div class="aside-switch">
+          <span class="side-switch-show" @click="asideClickHandle">
+              <span class="aside-switch-icon" :class="!isCollapse? 'wq-hover-rotate-180' : ''"><el-icon><ArrowLeftBold/></el-icon></span>
+          </span>
+          </div>
+        </div>
         <el-main>
           这是一个简单的语句
         </el-main>
@@ -61,6 +68,16 @@ import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 const dialogVisible = ref(false)
 // 用于控制菜单栏可见性
 const isCollapse = ref(false)
+
+// 点击折叠或展开菜单栏
+const asideClickHandle = () => {
+  if (isCollapse.value) {
+    isCollapse.value = false
+  } else {
+    isCollapse.value = true
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -83,13 +100,45 @@ const isCollapse = ref(false)
 }
 
 
-.page-aside{
+.page-aside {
+  position: relative;
 
-  :deep(.el-aside){
-    width: 0;
+  :deep(.el-aside) {
     display: inline-block;
     max-height: 500px;
   }
+
+  .aside-switch {
+    position: absolute;
+    width: 30px;
+    height: 60px;
+    overflow: hidden;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .side-switch-show {
+      position: absolute;
+      text-align: right;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 60px;
+      width: 30px;
+      height: 60px;
+      font-size: 16px;
+      background-color: #a8abb2;
+      border-radius: 70%;
+      z-index: 0;
+      cursor: pointer;
+      .aside-switch-icon{
+
+      }
+
+    }
+
+  }
+
 }
 
 
