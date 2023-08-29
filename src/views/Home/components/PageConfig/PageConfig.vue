@@ -27,28 +27,48 @@
               <el-icon>
                 <setting/>
               </el-icon>
-              <template #title>Navigator Four</template>
+              <template #title>搜索引擎</template>
             </el-menu-item>
             <el-menu-item index="2">
               <el-icon>
                 <setting/>
               </el-icon>
-              <template #title>Navigator Four</template>
+              <template #title>应用商店</template>
             </el-menu-item>
             <el-menu-item index="3">
               <el-icon>
                 <setting/>
               </el-icon>
-              <template #title>Navigator Four</template>
+              <template #title>背景</template>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <el-icon>
+                <setting/>
+              </el-icon>
+              <template #title>账户</template>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <el-icon>
+                <setting/>
+              </el-icon>
+              <template #title>背景</template>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <el-icon>
+                <setting/>
+              </el-icon>
+              <template #title>背景</template>
             </el-menu-item>
           </el-menu>
           <div class="aside-switch">
           <span class="side-switch-show" @click="asideClickHandle">
-              <span class="aside-switch-icon" :class="!isCollapse? 'wq-hover-rotate-180' : ''"><el-icon><ArrowLeftBold/></el-icon></span>
+              <span class="aside-switch-icon" :class=" !isCollapse ? 'aside-switch-on' : 'aside-switch-off'">
+                <el-icon><ArrowLeftBold/></el-icon>
+              </span>
           </span>
           </div>
         </div>
-        <el-main>
+        <el-main class="page-main">
           这是一个简单的语句
         </el-main>
       </el-container>
@@ -131,14 +151,36 @@ const asideClickHandle = () => {
       border-radius: 70%;
       z-index: 0;
       cursor: pointer;
-      .aside-switch-icon{
+      // 开启3d视图
+      transform-style: preserve-3d;
+
+
+      .aside-switch-icon {
+        display: inline-block;
+        //transition: all 0.5s;
+        //transform-origin: right;
+        transition: transform 0.3s ease-out;
+      }
+
+      .aside-switch-on {
 
       }
+
+      .aside-switch-off {
+        transform: rotate(180deg);
+      }
+
 
     }
 
   }
 
+}
+
+
+.page-main{
+  max-height: 600px;
+  overflow: auto;
 }
 
 
