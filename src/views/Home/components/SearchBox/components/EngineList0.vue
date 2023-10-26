@@ -1,10 +1,3 @@
-/**
-* @FileNAme src\views\Home\components\SearchBox\components\EngineList0.vue
-* @author 周万宁
-* @create 2023/8/9-21:48
-* @version
-* @description 搜索引擎列表
-*/
 <template>
   <div class="engine-list">
     <template v-for="engine in searchEngines">

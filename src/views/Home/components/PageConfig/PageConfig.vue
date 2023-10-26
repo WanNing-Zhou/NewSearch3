@@ -13,14 +13,15 @@
           left: '60px',
           bottom: '70px',
           width: '700px',
-          position: 'absolute'
+          position: 'absolute',
+          height: '600px',
         }"
         v-model:visible="dialogVisible">
 
       <el-container>
         <div class="page-aside">
           <el-menu
-              default-active="1"
+              ref="configMenu"
               :collapse="isCollapse"
           >
             <el-menu-item index="1">
@@ -122,6 +123,7 @@ const asideClickHandle = () => {
 
 .page-aside {
   position: relative;
+  height: 100%;
 
   :deep(.el-aside) {
     display: inline-block;

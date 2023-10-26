@@ -13,6 +13,10 @@ export const componentsVisibleStore = defineStore({
         suBoxVisible: false,
         // 引擎列表可见性
         engineListVisible: false,
+        // 设置的显示与隐藏
+        configPageVisible: false,
+        // 菜单的选中项
+        menuActive: '',
     }),
     getters: {},
     actions: {
