@@ -5,31 +5,30 @@
 **/
 
 <template>
-  <div class="wq-ground-glass"  :style="groundGlassStyle">
+  <div :style="groundGlassStyle" class="wq-ground-glass">
     <slot></slot>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 const props = defineProps(
     {
       groundGlassStyle: {
         type: Object,
-        default:{
+        default: {
           height: '200px'
         }
       },
     }
 )
 
-
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .wq-ground-glass {
   /*设置布局*/
-  position: relative;
+  //position: relative;
   //box-sizing: border-box;
   padding: 10px;
 

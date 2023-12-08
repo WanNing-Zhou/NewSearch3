@@ -85,6 +85,7 @@ const mainPageClass = computed(()=>{
 
 .main-page-bg-color {
   background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(5px);
 }
 
 

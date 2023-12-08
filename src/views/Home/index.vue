@@ -52,12 +52,13 @@ const bgClickHandle = ()=>{
   overflow: hidden;
   position: absolute;
   z-index: -1;
-  transition: filter 0.5s;
+  transition: backdrop-filter 0.5s;
 }
 
 .backImgBox-active{
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-  filter: blur(10px);
+  //filter: blur(10px);
+  backdrop-filter: blur(100px);
 }
 
 
