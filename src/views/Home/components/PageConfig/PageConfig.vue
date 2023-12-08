@@ -70,7 +70,7 @@
           </div>
         </div>
         <el-main class="page-main">
-          这是一个简单的语句
+          <ConfigMain/>
         </el-main>
       </el-container>
     </WQDialog0>
@@ -85,6 +85,7 @@ import GroundGlass from "@/components/GroundGlass/GroundGlass.vue";
 import {ref} from "vue";
 import WQDialog0 from "@/components/WQDialog0/WQDialog0.vue";
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
+import ConfigMain from "@/views/Home/components/PageConfig/ConfigMain.vue";
 
 const dialogVisible = ref(false)
 // 用于控制菜单栏可见性

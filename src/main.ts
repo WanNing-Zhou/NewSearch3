@@ -6,13 +6,11 @@
   * @description 入口文件
  */
 
-
-
 import {createApp} from 'vue'
 import 'hover.css/css/hover.css'
-import {createPinia} from 'pinia'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import VueClipboard from 'vue-clipboard2'
 
 // import wow from 'wowjs'
@@ -27,7 +25,7 @@ import 'qweather-icons/font/qweather-icons.css'
 import 'animate.css'
 // import 'swiper/swiper.scss'
 // import 'swiper/swiper-bundle.css'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 // import './style.css'
 import App from './App.vue' //可能出现.vue后缀不识别问题
 // import WowPlugin from './plugins/wow.ts'
@@ -36,12 +34,13 @@ import router from "@/router/index.ts";
 import "virtual:svg-icons-register";
 import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
 import '@/assets/styles/gloable.scss'
+import store from "@/store";
 
-const pinia = createPinia()
+
 
 const app = createApp(App);
 app.use(ElementPlus)
-app.use(pinia)
+app.use(store)
 // app.use(WowPlugin)
 // app.use(VueClipboard)
 

@@ -53,7 +53,6 @@ export const componentsVisibleStore = defineStore({
         // 点击背景,隐藏组件
         cancelVisible() {
             // console.log('点击事件触发了')
-
             if(this.suBoxVisible){
                 this.closeSuBox()
             }else if(this.engineListVisible){
