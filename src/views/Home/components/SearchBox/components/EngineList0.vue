@@ -1,6 +1,6 @@
 <template>
   <div class="engine-list">
-    <template v-for="engine in searchEngines">
+    <template v-for="engine in searchEngine.engineList">
       <engine-item v-bind="engine" @click="changeEngine(engine)"></engine-item>
     </template>
     <!-- 添加搜索引擎 -->
@@ -17,12 +17,16 @@
 import EngineItem from "@/views/Home/components/SearchBox/components/EngineItem.vue";
 import useStore from "@/store/useStore.ts";
 import {toRefs} from "vue";
+import {storeToRefs} from "pinia";
 
 const emit = defineEmits(['closeEngineList'])
 
 // 使用searchStore
-const {searchStore} = useStore
+const {searchStore, useConfStore} = useStore
 const store = searchStore();
+// 获取配置
+const confStore = useConfStore()
+const {searchEngine}  = storeToRefs(confStore)
 
 // 获取搜索引擎列表
 const {searchEngines} = toRefs(store)

@@ -1,4 +1,10 @@
-export default function searchEngineConf() {
+import {SearchEngine} from "@/type/searchTypes.ts";
+
+export type SearchEngineConf = {
+  engineList: SearchEngine[]
+}
+
+export default function searchEngineConf(): SearchEngineConf {
   return {
     engineList: [
       {

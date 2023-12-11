@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
 import {ConfKEY} from "@/enums/confKEY.ts";
 import searchEngineConf from "@/store/modules/configStore/searchEngineConf.ts";
+import {SearchEngine} from "@/type/searchTypes.ts";
 
 
 export const configStore = defineStore({
@@ -20,5 +21,8 @@ export const configStore = defineStore({
             // :TODO 一个想法, 获取到key的时候匹配conf对象, 然后重新set配置
             console.log(confKEY)
         },
+        setEngineList(egList : SearchEngine[]) {
+            this.searchEngine.engineList = egList
+        }
     },
 })
