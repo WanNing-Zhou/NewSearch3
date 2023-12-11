@@ -7,7 +7,7 @@ pnpn install vite-plugin-svg-icons -D
 ```
 
 
-## 配置vite.config.ts  文件
+## 配置vite.configStore.ts  文件
 
 ```js
 //引入依赖

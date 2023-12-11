@@ -5,11 +5,8 @@
  * @version
  * @description 这里用来存放与搜索相关的类型
  */
-
-interface SearchEngine {
-
+export interface SearchEngine {
     name: string,
     imgUrl:string,
     searchUrl: string,
-
 }

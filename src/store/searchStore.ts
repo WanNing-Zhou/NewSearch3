@@ -1,5 +1,7 @@
 import {defineStore} from "pinia";
 import {getLocalStorage, setLocalStorage} from "@/utils/loacalStorage.ts";
+import {SearchEngine} from "@/type/searchTypes.ts";
+
 
 export const searchStore = defineStore('searchStore', {
   state: () => ({
