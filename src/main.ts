@@ -8,7 +8,7 @@
 
 import {createApp} from 'vue'
 import 'hover.css/css/hover.css'
-import ElementPlus from 'element-plus'
+// import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import VueClipboard from 'vue-clipboard2'
@@ -39,7 +39,7 @@ import store from "@/store";
 
 
 const app = createApp(App);
-app.use(ElementPlus)
+// app.use(ElementPlus)
 app.use(store)
 // app.use(WowPlugin)
 // app.use(VueClipboard)
