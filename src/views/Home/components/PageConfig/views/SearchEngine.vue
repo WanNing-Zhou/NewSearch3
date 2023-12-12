@@ -1,6 +1,6 @@
 <template>
   <div class="search-engine-config">
-    <draggable v-model="engineList"  @start="onStart" @end="onEnd">
+    <draggable v-model="engineList"  @start="onStart" @end="onEnd" item-key="name">
       <template #item="{ element }">
         <div class="item search-engine">
           <div class="en-icon " :style="`background-image: url('${element.imgUrl}')`"></div>
@@ -12,6 +12,9 @@
         </div>
       </template>
     </draggable>
+    <div class="search-engine">
+      <wq-upload/>
+    </div>
   </div>
 </template>
 
@@ -19,7 +22,7 @@
 import {computed, toRefs} from "vue";
 import UseStore from "@/store/useStore.ts";
 import draggable from "vuedraggable";
-import SvgIcon from "@/components/SvgIcon/SvgIcon.vue";
+import WqUpload from "@/components/uploadComp/wqUpload.vue";
 
 const configStore = UseStore.useConfStore();
 const {searchEngine} = toRefs(configStore)
@@ -65,6 +68,7 @@ const onEnd = () => {
       height: 30px;
       background-size: cover;
       background-position: center;
+      flex-shrink: 0;
     }
 
     .swiper-pagination-bullets.swiper-pagination-horizontal{

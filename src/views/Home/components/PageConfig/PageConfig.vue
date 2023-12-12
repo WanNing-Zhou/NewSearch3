@@ -18,7 +18,7 @@
         }"
         v-model:visible="dialogVisible">
 
-      <el-container>
+      <el-container style="height: 100%; width: 100%">
         <div class="page-aside">
           <el-menu
               ref="configMenu"
@@ -172,8 +172,6 @@ const asideClickHandle = () => {
       .aside-switch-off {
         transform: rotate(180deg);
       }
-
-
     }
 
   }

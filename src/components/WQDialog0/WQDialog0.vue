@@ -19,7 +19,7 @@
           </slot>
           <button class="dialog_header_btn" @click="handleClose">
             <span class="remove" title="关闭">
-              <SvgIcon name="close"></SvgIcon>
+              <SvgIcon name="close1"></SvgIcon>
             </span>
           </button>
         </div>
@@ -142,6 +142,7 @@ const handleConfirm = ()=>{
   //background: rgba(0, 0, 0, 0.5);
 
   .dialog {
+    display: flex;
     position: relative;
     margin: 15vh auto 50px;
     border-radius: 4px;
@@ -186,6 +187,7 @@ const handleConfirm = ()=>{
       color: #606266;
       font-size: 14px;
       word-break: break-all;
+      overflow: auto;
     }
 
     & > .dialog_footer {

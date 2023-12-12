@@ -1,7 +1,6 @@
 <template>
   <div class="config-main">
     <SearchEngine v-if="configPage === ConfKEY.searchEngines"/>
-
   </div>
 </template>
 

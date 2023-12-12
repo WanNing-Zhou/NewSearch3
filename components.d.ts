@@ -22,5 +22,6 @@ declare module 'vue' {
     WQDialog: typeof import('./src/components/WQDialog/WQDialog.vue')['default']
     WQDialog0: typeof import('./src/components/WQDialog0/WQDialog0.vue')['default']
     WqPopup: typeof import('./src/components/WUPopup/wqPopup.vue')['default']
+    WqUpload: typeof import('./src/components/uploadComp/wqUpload.vue')['default']
   }
 }
