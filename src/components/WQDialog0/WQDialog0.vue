@@ -19,7 +19,7 @@
           </slot>
           <button class="dialog_header_btn" @click="handleClose">
             <span class="remove" title="关闭">
-              <SvgIcon name="close1"></SvgIcon>
+              <SvgIcon name="close"></SvgIcon>
             </span>
           </button>
         </div>

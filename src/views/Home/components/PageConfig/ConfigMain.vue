@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import SearchEngine from "@/views/Home/components/PageConfig/views/SearchEngine.vue";
+import SearchEngine from "@/views/Home/components/PageConfig/views/seasrchEngine/SearchEngine.vue";
 import UseStore from "@/store/useStore.ts";
 import {storeToRefs} from "pinia";
 import {ConfKEY} from "@/enums/confKEY.ts";
@@ -16,6 +16,6 @@ const  {configPage} = storeToRefs(confStore)
 
 <style lang="scss" scoped>
 .config-main{
-
+  height: 100%;
 }
 </style>

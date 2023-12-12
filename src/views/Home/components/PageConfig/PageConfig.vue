@@ -19,10 +19,12 @@
         v-model:visible="dialogVisible">
 
       <el-container style="height: 100%; width: 100%">
+        <!--没有使用el-aside, 因为这个不能自适应宽度-->
         <div class="page-aside">
           <el-menu
               ref="configMenu"
               :collapse="isCollapse"
+              class="config-menu"
           >
             <el-menu-item index="1">
               <el-icon>
@@ -64,7 +66,8 @@
           <div class="aside-switch">
           <span class="side-switch-show" @click="asideClickHandle">
               <span class="aside-switch-icon" :class=" !isCollapse ? 'aside-switch-on' : 'aside-switch-off'">
-                <el-icon><ArrowLeftBold/></el-icon>
+<!--                <el-icon><ArrowLeftBold/></el-icon>-->
+                <SvgIcon name="rightArrow2"/>
               </span>
           </span>
           </div>
@@ -131,6 +134,11 @@ const asideClickHandle = () => {
     max-height: 500px;
   }
 
+  .config-menu{
+    height: 100%;
+    overflow: auto;
+  }
+
   .aside-switch {
     position: absolute;
     width: 30px;
@@ -162,7 +170,7 @@ const asideClickHandle = () => {
         display: inline-block;
         //transition: all 0.5s;
         //transform-origin: right;
-        transition: transform 0.3s ease-out;
+        //transition: transform 0.3s ease-out;
       }
 
       .aside-switch-on {
