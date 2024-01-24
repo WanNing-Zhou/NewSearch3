@@ -23,6 +23,7 @@
 <script lang="tsx" setup>
 import {computed, ref} from "vue";
 import {fileOverSize} from "@/utils/message";
+import {fileUpload} from "@/api/file.ts";
 
 type Prop = {
   type?: 'rect' | 'circle';
@@ -34,10 +35,19 @@ type Prop = {
 
 const props = withDefaults(defineProps<Prop>(), {
   type: 'rect',
-  uploadFn: (file: File): Promise<string | null> => {
-    return new Promise((resolve) => {
-      resolve(URL.createObjectURL(file))
-    })
+  // 文件上传方法
+  uploadFn: async (file: File) => {
+    if(file){
+      const formData = new FormData()
+      formData.append('files', file)
+      const res = await fileUpload(formData);
+      // 获取返回信息
+      const url = res.data.data.url;
+      return url
+    }else{
+      return ''
+    }
+
   },
   width: '48px',
   height: '48px'
@@ -47,12 +57,13 @@ const emit = defineEmits<{
   (e: 'callback', url: string): void,
   (e: 'update:modelValue', url: string): void
 }>()
+
 let imgUrl = ''
 const defaultPhoto = computed({
   get(){
-    return props.modelValue || imgUrl
+    return props.modelValue
   },
-  set(value){
+  set(value: any){
     imgUrl = value
     emit('callback', defaultPhoto.value)
     emit('update:modelValue', value)
@@ -64,25 +75,30 @@ const fileInputDom = ref()
 const uploadPhoto = () => {
   // fileInputDom.value = ev.target?.closest('.upload-avatar')?.querySelector('.file_input_file')
   // fileInputDom.click()
-  console.log('fileInputDom', fileInputDom)
+  // console.log('fileInputDom', fileInputDom)
   fileInputDom.value.click()
 }
 
 // 上传文件请求
 const uploadFileRequest = async (file: File) => {
-  defaultPhoto.value = await props.uploadFn(file) || ''
-  console.log('file', file)
+  // console.log('file', file)
+  // console.log('file', file)
+  const url = await props.uploadFn(file)
+  // console.log('url', url)
+  defaultPhoto.value = url ||  URL.createObjectURL(file)
+
   // 可以使用TUS进行文件上传操作
 }
 
 // 限制上传文件类型
 const uploadFileChange = (event: any) => {
-  // console.log('event',event);
   // 检查文件大小
-  if (event.target.files[0].size / 1024 <= 500) {
+  if (event.target.files[0].size / 1024 <= 32*1024) {
+
     const file = event.target.files[0]
     uploadFileRequest(file)
-    defaultPhoto.value = URL.createObjectURL(file)
+    // defaultPhoto.value = URL.createObjectURL(file)
+    uploadFileRequest(file)
     fileInputDom.value.value = ''
   } else {
     fileOverSize()

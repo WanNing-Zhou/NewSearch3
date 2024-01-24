@@ -13,7 +13,6 @@
 
     </swiper>
 
-
     <!--    <template v-for="engine in searchEngines" :key="engine.name">-->
     <!--      <EngineItem v-bind="engine"></EngineItem>-->
     <!--    </template>-->

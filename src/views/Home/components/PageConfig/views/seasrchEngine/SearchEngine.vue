@@ -8,8 +8,8 @@
             <div>{{element.name}}</div>
             <!--          <el-input type="text" v-model="element.searchUrl"></el-input>-->
             <div class="eg-url">{{element.searchUrl}}</div>
-            <el-button type="text">删除</el-button>
-            <el-button type="text">编辑</el-button>
+            <el-button type="text" @click="deleteEn(element)">删除</el-button>
+<!--            <el-button type="text">编辑</el-button>-->
           </div>
         </template>
       </draggable>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="btn-box">
-        <el-button type="text" @click="submit">确认</el-button>
+        <el-button type="text" @click="submit">添加</el-button>
         <el-button type="text">取消</el-button>
       </div>
     </div>
@@ -43,10 +43,13 @@ import {computed, ref, toRefs} from "vue";
 import draggable from "vuedraggable";
 import UseStore from "@/store/useStore.ts";
 import WqUpload from "@/components/uploadComp/wqUpload.vue";
+import {SearchEngine} from "@/type/searchTypes.ts";
+
 
 const configStore = UseStore.useConfStore();
 const {searchEngine} = toRefs(configStore)
 
+// 引擎列表
 const engineList = computed({
   get: ()=>{
     return searchEngine.value.engineList
@@ -55,6 +58,16 @@ const engineList = computed({
     configStore.setEngineList(egList)
   }
 })
+// 删除引擎
+const deleteEn = (eit: SearchEngine) => {
+  // 找到目标索引, 但是这个会存在bug :TODO 后期可以为引擎添加id属性
+  const objIndex = engineList.value.findIndex(item => item.imgUrl === eit.imgUrl && item.name === eit.name && item.searchUrl === eit.searchUrl)
+  const newList = engineList.value.filter((item, index) => {
+    return index !== objIndex
+  })
+  // 设置存储中的引擎列表
+  configStore.setEngineList( [...newList])
+}
 
 const enEmpty = {
   name: '',
@@ -68,15 +81,24 @@ const enForm = ref({
 
 // 清空添加表单
 const clearEnForm = () => {
-  enForm.value = {...enEmpty}
+  enForm.value.imgUrl = ''
+  enForm.value.searchUrl = ''
+  enForm.value.name = ''
 }
 
 const onStart = () => {
 
 }
 
-const onEnd = () => {
+// 添加搜索引擎确认
+const submit = () => {
+  // 设置存储中的引擎列表
+  configStore.setEngineList( [...engineList.value, {...enForm.value}])
+  // 清空表单
+  clearEnForm()
+}
 
+const onEnd = () => {
 }
 
 </script>

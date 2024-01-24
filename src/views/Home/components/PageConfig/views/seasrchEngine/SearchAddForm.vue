@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-
 import WqUpload from "@/components/uploadComp/wqUpload.vue";
+
 </script>
 
 <style scoped>
